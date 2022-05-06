@@ -1,5 +1,6 @@
 package bst;
 
+import java.util.HashSet;
 import java.util.Stack;
 
 public class BinarySearchTree<T extends Comparable<T>> {
@@ -136,6 +137,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//then recursively print the right side of current node
 	//For a bst this will print the values in sorted order from smallest to largest
 	public void inOrder() {
+		if (root == null) {
+			return;
+		}
 		inOrderRecurse(root); 
 	}
 	
@@ -157,6 +161,24 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
 		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
+		HashSet<BSTNode<T>> map = new HashSet<BSTNode<T>>();
+		in.push(root);
+		
+		while (!in.empty()) {
+			BSTNode<T> node = in.pop();
+			if (!map.contains(node)) {
+				if (node.rightChild != null) {
+					in.push(node.rightChild);
+				}
+				in.push(node);
+				if (node.leftChild != null) {
+					in.push(node.leftChild);
+				}
+				map.add(node);
+			} else {
+				System.out.println(node.data);
+			}
+		}
 	}
 	
 	//Traverse the tree in an postorder fashion
