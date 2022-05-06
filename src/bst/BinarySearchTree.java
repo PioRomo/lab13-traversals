@@ -189,8 +189,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		Stack<BSTNode<T>> postHelper = new Stack<>();
 		if (root != null) {
 			postHelper.push(root);
-			while (!postHelper.isEmpty()) {
-				// how should post and postHelper be updated?
+
+			while(!postHelper.isEmpty()) {
+				//how should post and postHelper be updated?
+				BSTNode popped = postHelper.pop(); 
+				post.push(popped); 
+				
+				if(popped.leftChild != null) {
+					postHelper.push(popped.leftChild);
+				}
+				
+				if(popped.rightChild != null) {
+					postHelper.push(popped.rightChild);
+				}
 			}
 
 			while (!post.isEmpty()) {
@@ -241,7 +252,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		System.out.println();
 		System.out.println("Post Order Traversals");
 		bst.postOrder();
-		System.out.println();
+		System.out.println("Post Stack");
 		bst.postOrderStack();
 
 	}
