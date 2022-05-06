@@ -117,7 +117,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//Print the current node first and then recurse on the children
 	public void preOrder() {
 		preOrderRecurse(root); 
-		System.out.println(PreOrder test commit);
 	}
 	
 	private void preOrderRecurse(BSTNode<T> node) {
@@ -138,36 +137,35 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	//For a bst this will print the values in sorted order from smallest to largest
 	public void inOrder() {
 		inOrderRecurse(root); 
-		//System.out.println(InOrder test commit);
 	}
 	
 	public void inOrderRecurse(BSTNode<T> node) {
+		if (node == null) {
+			return;
+		}
 		
+		if (node.leftChild != null) {
+			inOrderRecurse(node.leftChild);
+		}
+		
+		System.out.println(node.data);
+		
+		if (node.rightChild != null) {
+			inOrderRecurse(node.rightChild);
+		}
 	}
 	//Traverse the tree in an inorder fashion but using a stack
 	public void inOrderStack() {
 		Stack<BSTNode<T>> in = new Stack<BSTNode<T>>();
-		
-		
 	}
 	
 	//Traverse the tree in an postorder fashion
 	//Recurse on the children and then print the value in the current node
 	public void postOrder() {
 		postOrderRecurse(root); 
-		//System.out.println(PostOrder test commit);
 	}
 	
 	public void postOrderRecurse(BSTNode<T> node) {
-		if(node != null) {
-			postOrderRecurse(node.leftChild);
-			//System.out.println("AFTER LEFT");
-			postOrderRecurse(node.rightChild);
-			//System.out.println("AFTER RIGHT");
-			System.out.println(node.data);
-			//System.out.println("AFTER DATA");
-		}
-		
 		
 	}
 	
@@ -189,6 +187,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 				System.out.print(node + " ");
 			}
 		}
+^X
 
 	}
 	
@@ -210,7 +209,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		//Test Tree
 		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
 		bst.insert(9);
-		bst.insert(7);
+X
+XXX		bst.insert(7);
 		bst.insert(11);
 		bst.insert(2);
 		bst.insert(8);
@@ -219,21 +219,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		bst.insert(3);
 		System.out.println(bst);
 	
-		/*System.out.println("In Order Traversals");
+		System.out.println("In Order Traversals");
 		bst.inOrder();
 		System.out.println();
 		bst.inOrderStack();
 		System.out.println();
 		System.out.println("Pre Order Traversals");
-		bst.preOrder();
+//		bst.preOrder();
+//		System.out.println();
+//		bst.preOrderStack();
 		System.out.println();
-		bst.preOrderStack();
-		System.out.println();
-		*/
 		System.out.println("Post Order Traversals");
-		bst.postOrder();
-		/*System.out.println();
-		bst.postOrderStack();*/
+//		bst.postOrder();
+		System.out.println();
+//		bst.postOrderStack();
 		
 		
 	}
